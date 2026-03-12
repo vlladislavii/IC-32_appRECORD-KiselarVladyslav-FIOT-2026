@@ -4,10 +4,10 @@
     "subjectLine": "з дисципліни «WEB-ОРІЄНТОВАНІ ТЕХНОЛОГІЇ. BACKEND РОЗРОБКИ»"
   },
   "student": {
-    "fullName": "Прізвище Ім’я По батькові",
-    "group": "Іx-xx",
+    "fullName": "Кіселар Владислав Петрович",
+    "group": "ІС-32",
     "gender": "male",
-    "photo": "/students/chad.jpg"
+    "photo": "/students/me.jpg"
   },
   "toc": {
     "minDepth": 2,
