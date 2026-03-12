@@ -8,8 +8,6 @@
   let { children }: { children: Snippet } = $props();
 
   const homeHref = resolve("/");
-  const aboutHref = resolve("/about");
-  const authorHref = "https://t.me/Pliffdax";
   const labHref = (slug: string) => resolve(`/lab/${slug}` as `/lab/${string}`);
 
   const photoSrc = config.student.photo ? asset(config.student.photo) : "";
@@ -61,10 +59,6 @@
   </main>
 
   <footer class="footer">
-    <a class="footer-link" href={authorHref} target="_blank">PLIFFDAX</a>
-    <span class="footer-sep">·</span>
-    <a class="footer-link" href={aboutHref}>Про шаблон</a>
-    <span class="footer-sep">·</span>
     <a class="footer-link" href={homeHref}>На головну</a>
   </footer>
 </div>
