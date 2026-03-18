@@ -15,7 +15,7 @@
 
 **Місце розташування:**
 - **GitHub:** [https://github.com/vlladislavii/E-Hotel](https://github.com/vlladislavii/E-Hotel)
-- **Live demo:** 
+- **Live demo:** [https://vlladislavii.github.io/E-Hotel/](https://vlladislavii.github.io/E-Hotel/)
 
 ---
 
@@ -127,6 +127,140 @@
 
 ---
 
-## Створення веб-застосунку
+## Реалізація вебзастосунку «E-Hotel»
 
-### Крок 1: Налаштування середовища
+### Стек технологій
+
+* **HTML5** — семантична розмітка сторінок для бронювання, каталогів та дашбордів.
+* **CSS3** — стилізація інтерфейсу, використання Flexbox та Grid для адаптивної верстки, а також Media Queries.
+* **JavaScript (Vanilla)** — реалізація бізнес-логіки: динамічне завантаження меню, фільтрація готелів, пошук номерів та розрахунок вартості.
+* **Vite** — інструмент для збірки проекту та управління модулями.
+* **Lucide Icons** — набір легких іконок для візуалізації сервісів та елементів навігації.
+
+---
+
+### Структура проєкту
+Проєкт побудований за модульним принципом, де логіка даних відокремлена від представлення.
+
+* **`/public`** — статичні файли (favicon, іконки та шаблон `sidebar.html`).
+* **`/src/assets`** — графічні ресурси проєкту (зображення героїв, SVG логотипи Vite та JS).
+* **`/src/css`** — стилі проєкту (`style.css`), що використовують Flexbox та Grid.
+* **`/src/html`** — набір сторінок для функціоналу системи:
+    * `booking.html` — форма оформлення броні.
+    * `hotel-catalog.html` — каталог готелів.
+    * `search-availability.html` — інтерфейс перевірки вільних номерів.
+    * `stay-management.html` — управління поточними бронюваннями.
+* **`/src/js`** — модульна бізнес-логіка (js-скріпти)
+
+---
+
+### Структура документа
+
+Нижче наведено узагальнену структуру HTML для головних сторінок проекту — **index.html** (Дашборд) та **booking.html** (Форма бронювання). Це спрощені DOM-скелети, які демонструють розміщення основних блоків: `sidebar-container` для навігації, `header` із заголовками сторінок та `card` для контенту.
+
+#### 1) Структура сторінки `booking.html` (Бронювання)
+
+```html
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Booking - E-Hotel</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <div id="sidebar-container"></div>
+
+        <div class="dashboard-container">
+            <header class="header">
+                <h2 class="title">New Booking</h2>
+                <p id="hotel-name-display" class="subtitle">Створення нової резервації</p>
+            </header>
+
+            <div id="selected-room-card" class="card">
+                </div>
+
+            <form id="booking-form">
+                <div class="card">
+                    <h3>Tourist Information</h3>
+                    </div>
+
+                <div class="card">
+                    <h3>Booking Summary</h3>
+                    <div id="total-booking-price">$0</div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="module" src="/src/js/load-sidebar.js"></script>
+    <script type="module" src="/src/js/booking.js"></script>
+</body>
+</html>
+```
+![Booking page](/assets/labs/lab-1/booking-page.png)
+
+#### 2) Структура сторінки `hotel-catalog.html` (Каталог)
+
+```html
+<!DOCTYPE html>
+<html lang="uk">
+<body>
+    <div class="layout-wrapper">
+        <div id="sidebar-container"></div>
+
+        <div class="dashboard-container">
+            <header class="header">
+                <h2 class="title">Hotel Catalog</h2>
+            </header>
+
+            <div class="catalog-layout">
+                <aside class="filters-sidebar">
+                    <div class="filter-group">
+                        <h4>Star Rating</h4>
+                        </div>
+                </aside>
+
+                <main class="catalog-main">
+                    <div class="hotels-grid" id="hotels-grid">
+                        </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="../js/hotel-catalog.js"></script>
+</body>
+</html>
+```
+![Hotel catalog page](/assets/labs/lab-1/hotel-catalog.png)
+
+### Адаптивна верстка та стилістичні рішення
+
+Для забезпечення коректного відображення на різних пристроях реалізовано наступні механізми:
+
+1.  **Адаптивна навігація:**
+    Використано скрипт `load-sidebar.js`, який динамічно підвантажує меню. На мобільних пристроях реалізовано «бургер-меню» (кнопка `#menu-toggle`), яке перемикає клас `.is-visible` для відображення навігації.
+
+    ![Code screen 1_1](/assets/labs/lab-1/code1_1.png)
+    ![Code screen 1_2](/assets/labs/lab-1/code1_2.png)
+
+2.  **Гнучкі сітки (Flexbox & Grid):**
+    * Для карток готелів у каталозі використано `display: grid` (клас `.hotels-grid`), що дозволяє контенту автоматично адаптуватися під ширину екрана.
+    * Статистичні картки на дашборді та елементи форми бронювання використовують Flexbox для гнучкого вирівнювання.
+
+    ![Code screen 2_1](/assets/labs/lab-1/code2_1.png)
+    ![Code screen 2_2](/assets/labs/lab-1/code2_2.png)
+
+3.  **Медіа-запити:**
+    У CSS налаштовано переходи для різних брекпоінтів, що змінюють структуру сторінки (наприклад, перехід від горизонтального до вертикального розташування полів у формах).
+
+    ![Code screen 1_3](/assets/labs/lab-1/code1_3.png)
+
+4.  **Відносні одиниці вимірювання:**
+    Шрифти та відступи налаштовані через `rem`, а ширина контейнерів — через `%` та `vw`, що забезпечує гнучкість інтерфейсу на різних роздільних здатностях.
+
+    ![Code screen 3_1](/assets/labs/lab-1/code3_1.png)
+    ![Code screen 3_2](/assets/labs/lab-1/code3_2.png)
+---
