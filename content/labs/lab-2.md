@@ -307,3 +307,4 @@ async function deleteHotelSequelize(hotelId) {
     console.log('ORM: Готель видалено через Hotel.destroy().');
 }
 ```
+---
