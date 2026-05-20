@@ -49,8 +49,6 @@
 
 ## Структура проєкту
 
-![Project Structure](/assets/labs/lab-6/structure.png)
-
 ```
 backend/
 ├── src/
